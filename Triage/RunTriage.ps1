@@ -1,3 +1,7 @@
+param (
+    [switch]$Verbose = $false
+)
+
 function GenerateHTMLHeader($htmlData)
 {
     $htmlReport = "<html><title></title>"
@@ -11,9 +15,7 @@ function RunCheck()
     $name = Get-TName
     Write-Host "Running Module:" $name -ForegroundColor Green
     $data = Get-TData
-    #Write-Host $data.data
     $result = Get-TReportData $data
-    Write-Host $result
     return $data
 }
 
@@ -24,10 +26,21 @@ $moduleFolder = '.\Modules'
 $htmlData = ""
 foreach($module in $modules)
 {
-    #Write-Host $module
+    #
+    if($Verbose -eq $true)
+    {
+        Write-Host "VERBOSE: Found Module" $module -ForegroundColor Yellow
+    }
+    
     $moduleLocation = $moduleFolder + '\'  + $module
-    #Write-Host $moduleLocation
-    Import-Module -Name $moduleLocation #-Verbose
+    if($Verbose -eq $true)
+    {
+        Write-Host "VERBOSE: Module Location:" $moduleLocation -ForegroundColor Yellow
+        Import-Module -Name $moduleLocation -Verbose
+    }else
+    {
+        Import-Module -Name $moduleLocation
+    }
     $data = RunCheck
     $htmlData += Get-THTMLData $data
     $htmlData += "</br>"
@@ -36,6 +49,6 @@ foreach($module in $modules)
 
 
 $htmlData = GenerateHTMLHeader $htmlData
-Write-Host $htmlData
+#Write-Host $htmlData
 Set-Content -Path .\Report\Report.html $htmlData
 
