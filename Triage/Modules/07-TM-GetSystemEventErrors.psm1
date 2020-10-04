@@ -5,10 +5,15 @@ function Get-TName()
 
 function Get-TData()
 {
-	$data = (Get-EventLog -LogName System -EntryType Error -Newest 5)
-	$returnObject =[pscustomobject]@{
-		data = $data
-	}
+    try {
+        $data = (Get-EventLog -LogName System -EntryType Error -Newest 5 -ErrorAction Stop)
+        $returnObject =[pscustomobject]@{
+            data = $data
+        }
+    }
+    catch {
+        Write-Host "No matches found"
+    }
 	return $returnObject
 }
 
