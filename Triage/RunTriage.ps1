@@ -1,5 +1,6 @@
 param (
-    [switch]$Verbose = $false
+    [switch]$Verbose = $false,
+    [switch]$DatedReport = $false
 )
 
 function GenerateHTMLHeader($htmlData)
@@ -19,6 +20,14 @@ function RunCheck()
     return $data
 }
 
+function CheckForReportFolder()
+{
+    $reportFolder = ".\Report"
+    if(-Not (Test-Path -Path $reportFolder -PathType Container))
+    {
+        New-Item -Path . -Name "Report" -ItemType "directory"
+    }
+}
 
 $modules = Get-Content -Path '.\Modules.txt'
 $moduleFolder = '.\Modules'
@@ -50,5 +59,14 @@ foreach($module in $modules)
 
 $htmlData = GenerateHTMLHeader $htmlData
 #Write-Host $htmlData
-Set-Content -Path .\Report\Report.html $htmlData
+CheckForReportFolder
+if($DatedReport)
+{   
+    $reportName = ".\Report\" + (Get-Date -format yyyy-MM-dd-HH-mm-ss) + "-TriageReport.html"
+    Set-Content -Path $reportName $htmlData    
+}else {
+    Set-Content -Path .\Report\Report.html $htmlData    
+}
+
+
 
