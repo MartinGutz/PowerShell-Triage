@@ -40,8 +40,7 @@ $moduleFolder = '.\Modules'
 $htmlData = ""
 foreach($module in $modules)
 {
-    #
-    if($Verbose -eq $true)
+     if($Verbose -eq $true)
     {
         Write-Host "VERBOSE: Found Module" $module -ForegroundColor Yellow
     }
