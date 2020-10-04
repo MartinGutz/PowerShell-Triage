@@ -1,6 +1,7 @@
 param (
     [switch]$Verbose = $false,
-    [switch]$DatedReport = $false
+    [switch]$DatedReport = $false,
+    [switch]$OutputResultsToConsole = $false
 )
 
 function GenerateHTMLHeader($htmlData)
@@ -16,7 +17,11 @@ function RunCheck()
     $name = Get-TName
     Write-Host "Running Module:" $name -ForegroundColor Green
     $data = Get-TData
-    $result = Get-TReportData $data
+    if($OutputResultsToConsole)
+    {
+        $result = Get-TReportData $data
+        Write-Host $result
+    }
     return $data
 }
 
@@ -58,7 +63,6 @@ foreach($module in $modules)
 
 
 $htmlData = GenerateHTMLHeader $htmlData
-#Write-Host $htmlData
 CheckForReportFolder
 if($DatedReport)
 {   
