@@ -55,6 +55,7 @@ function Get-TReportData($objects)
 			$report += "`n Process ID: -"
 		}
 	}
+	$report += "</br>"
 	return $report
 }
 
