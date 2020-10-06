@@ -7,3 +7,4 @@
 06-TM-GetStoppingService.psm1
 07-TM-GetSystemEventErrors.psm1
 08-TM-GetTopCPUProcesses.psm1
+09-TM-GetSpecificProcessStatus.psm1
