@@ -9,3 +9,4 @@
 08-TM-GetTopCPUProcesses.psm1
 09-TM-GetSpecificProcessStatus.psm1
 10-TM-GetRAMCapacity.psm1
+11-TM-GetEstablishedTCPConnections.psm1
