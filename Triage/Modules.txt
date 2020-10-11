@@ -10,4 +10,5 @@
 09-TM-GetSpecificProcessStatus.psm1
 10-TM-GetRAMCapacity.psm1
 11-TM-GetEstablishedTCPConnections.psm1
-20-TM-GetEstablishedTCPConnections.psm1
+20-TM-GetWebSiteStatus.psm1
+21-TM-GetJSONStatus.psm1

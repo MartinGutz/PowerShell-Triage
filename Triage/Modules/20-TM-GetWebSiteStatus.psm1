@@ -29,6 +29,7 @@ function Get-THTMLData($object)
 	$report += $object.siteName
 	$report += "</br><b>Site Return Code: </b>" 
 	$report += $object.data.StatusCode
+	$report += "</br>"
 	return $report
 }
 
