@@ -33,6 +33,7 @@ function Get-THTMLData($object)
 		$report += "</br><b>ID: </b>" + $result.id 
 		$report += "<b>Number: </b>" + $result.number
 	}
+	$report += "</br>"
 	return $report	
 }
 
