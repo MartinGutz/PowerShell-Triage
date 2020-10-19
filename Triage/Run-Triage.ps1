@@ -8,6 +8,13 @@ Run the command Run-Triage and then check the Reports folder created
 .EXAMPLE
 Run-Triage.ps1 -ReportLocation ".\Report\Out.html"
 
+This will run a command that will run the modules and generate a report in the location specified. The report will be named Out.html
+
+.EXAMPLE
+Run-Triage.ps1 -ReportLocation ".\Report\-DatedReport.html" -DatedReport
+
+This will run a command that will run the modules and generate a report in the location specified. The report will be named YYYY-MM-DD-hh-mm-ss-Out.html
+
 .NOTES
 
 .LINK
