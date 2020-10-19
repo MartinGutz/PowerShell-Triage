@@ -42,12 +42,11 @@ function RunCheck()
     return $data
 }
 
-function CheckForReportFolder()
+function CheckForReportFolder($reportLocation)
 {
-    $reportFolder = ".\Report"
-    if(-Not (Test-Path -Path $reportFolder -PathType Container))
+    if(-Not (Test-Path -Path (Split-Path -Path $reportLocation) -PathType Container))
     {
-        New-Item -Path . -Name "Report" -ItemType "directory"
+        New-Item -Path . -Name (Split-Path -Path $reportLocation) -ItemType "directory"
     }
 }
 
@@ -79,13 +78,13 @@ foreach($module in $modules)
 
 
 $htmlData = GenerateHTMLHeader $htmlData
-CheckForReportFolder
+CheckForReportFolder $ReportLocation
 if($DatedReport)
 {   
-    $reportName = ".\Report\" + (Get-Date -format yyyy-MM-dd-HH-mm-ss) + "-TriageReport.html"
-    Set-Content -Path $reportName $htmlData    
+    $datedReportName = (Split-Path -Path $reportLocation) + ("\") + (Get-Date -format yyyy-MM-dd-HH-mm-ss) + (Split-Path $reportLocation -Leaf)
+    Set-Content -Path $datedReportName $htmlData    
 }else {
-    Set-Content -Path .\Report\Report.html $htmlData    
+    Set-Content -Path $ReportLocation $htmlData    
 }
 
 
