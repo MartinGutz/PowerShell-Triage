@@ -6,7 +6,7 @@ This is a PowerShell script to generate a simple HTML report with computer infor
 Run the command Run-Triage and then check the Reports folder created
 
 .EXAMPLE
-Run-Triage.ps1
+Run-Triage.ps1 -ReportLocation ".\Report\Out.html"
 
 .NOTES
 
@@ -16,9 +16,9 @@ https://github.com/MartinGutz/PowerShell-Triage
 #>
 
 param (
-    [switch]$Verbose = $false,
     [switch]$DatedReport = $false,
-    [switch]$OutputResultsToConsole = $false
+    [switch]$OutputResultsToConsole = $false,
+    [Parameter(Mandatory=$true)] [string] $ReportLocation
 )
 
 function GenerateHTMLHeader($htmlData)
