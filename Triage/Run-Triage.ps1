@@ -31,6 +31,9 @@ param (
 function GenerateHTMLHeader($htmlData)
 {
     $htmlReport = "<html><title></title>"
+    $htmlReport += "<b>Report Date: </b>"
+    $htmlReport += Get-Date
+    $htmlReport += "<br/><br/>"
     $htmlReport += $htmlData
     $htmlReport += "</html>"
     return $htmlReport
